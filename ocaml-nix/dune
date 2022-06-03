@@ -1,0 +1,13 @@
+(library
+ (name nix)
+ (preprocess
+  (pps ppx_rapper))
+ (flags :standard -open StdLabels)
+ (libraries
+  hex
+  base64
+  logs
+  caqti-lwt
+  caqti-driver-sqlite3
+  ppx_rapper_lwt
+  ppx_rapper.runtime))
