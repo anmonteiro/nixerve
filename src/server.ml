@@ -1,7 +1,6 @@
 open Piaf
 open Lwt.Syntax
-open Std
-open (val Logging.setup __FILE__)
+open Stdune
 
 type ctx =
   { system : System.t
@@ -40,12 +39,12 @@ References: %s
       (Option.value
          ~default:""
          (Option.map
-            (fun deriver ->
+            ~f:(fun deriver ->
               Format.asprintf "Deriver: %s\n" (Filename.basename deriver))
             deriver))
       (Option.value
          ~default:""
-         (Option.map (fun ca -> Format.asprintf "CA: %s\n" ca) ca))
+         (Option.map ~f:(fun ca -> Format.asprintf "CA: %s\n" ca) ca))
       (if signatures != []
       then Format.asprintf "Sig: %s\n" (String.concat ~sep:" " signatures)
       else "")

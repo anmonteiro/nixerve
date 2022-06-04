@@ -1,9 +1,8 @@
-open Std
-open (val Logging.setup __FILE__)
+open Stdune
 
 module WebSystem = struct
   let system =
-    let config = System.live_config Env.env in
+    let config = System.live_config Env.initial in
     let core_system =
       let local_system = System.(make_system config) in
       Archi_lwt.Component.of_system local_system

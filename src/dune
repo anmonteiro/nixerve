@@ -4,6 +4,7 @@
   (pps ppx_rapper))
  (libraries
   base64
+  archi-lwt
   piaf
   logs
   fmt.tty
@@ -12,5 +13,6 @@
   caqti-driver-sqlite3
   ppx_rapper_lwt
   ppx_rapper.runtime
-  nix)
+  nix
+  stdune)
  (flags :standard -open StdLabels))
