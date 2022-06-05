@@ -1,5 +1,4 @@
-open Std
-open (val Logging.setup __FILE__)
+open Stdune
 open Archi_lwt
 
 module NixStoreDb = struct
@@ -24,11 +23,11 @@ type config =
 
 let local_config env =
   { db_uri =
-      Option.get
+      Option.value
         ~default:Nix.Store.db_uri
-        (Option.map Uri.of_string (Env.get env "DB_URI"))
+        (Option.map ~f:Uri.of_string (Env.get env "DB_URI"))
   ; web_port =
-      int_of_string (Env.get_with_default env ~default:"8080" "WEB_PORT")
+      int_of_string @@ Option.value ~default:"8080" (Env.get env "WEB_PORT")
   }
 
 let live_config env = local_config env
